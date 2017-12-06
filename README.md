@@ -59,4 +59,4 @@ El código de partida está disponible para cada grupo en su respectivo reposito
 
 ### Detalles del proyecto: 
 
-Enunciado en <http://ccia.ei.uvigo.es/docencia/DAGSS/1718/practicas/practicaDAGSS2017/>
+Enunciado en <http://ccia.esei.uvigo.es/docencia/DAGSS/1718/practicas/practicaDAGSS2017/>
