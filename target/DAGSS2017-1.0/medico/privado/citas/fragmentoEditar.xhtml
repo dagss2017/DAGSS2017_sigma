@@ -11,6 +11,39 @@
                 <b:panel title="Editar Prescripcion ID. #{citasControlador.prescripcionActual.id}" 
                          rendered="#{not empty citasControlador.prescripcionActual}"
                          collapsible="false">
+                    <div id="medicamentos">
+                        <b:dataTable id="tablaListado"  class="tablaListadoClass"
+                                     value="#{citasControlador.medicamentos}"
+                                     var="medicamento"
+                                     page-length="4" page-length-menu="[4,8]">
+
+                            <b:dataTableColumn label="Nombre">
+                                <h:outputText value="#{medicamento.nombre}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Principio activo">
+                                <h:outputText value="#{medicamento.principioActivo}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Fabricante">
+                                <h:outputText value="#{medicamento.fabricante}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Familia">
+                                <h:outputText value="#{medicamento.familia}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Dosis">
+                                <h:outputText value="#{medicamento.numeroDosis}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="" orderable="false">
+                                <b:commandButton id="botonEditar" icon-awesome="medkit" tooltip="Ver" ajax="true"  
+                                                 actionListener="#{citasControlador.seleccionarMedicamento(medicamento)}" 
+                                                 oncomplete="$('#medicamentos').hide();$('#medic').show()" />
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </div>
+                    
+                    <div id="medic" style="display: none">
+                        <b:label id="selected" value="Medicamento seleccionado &#10004;"/>
+                        <br/>
+                    </div>
                     
                     <h:outputLabel value="Dosis" for="dosis"/>
                     <b:inputText id="dosis" value="#{citasControlador.prescripcionActual.dosis}"/>
@@ -30,7 +63,7 @@
                     <b:commandButton value="Guardar" 
                                      ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal" 
                                      actionListener="#{citasControlador.doGuardarPrescripcionEditado()}"  
-                                     oncomplete="$('.modal-editar-class').modal('hide')"/>
+                                     oncomplete="$('.modal-editar-class').modal('hide'); location.reload()"/>
                     <b:button value="Cerrar" dismiss="modal"/>
                 </f:facet>
             </b:modal>                        

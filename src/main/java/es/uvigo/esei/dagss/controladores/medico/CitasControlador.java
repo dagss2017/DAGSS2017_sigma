@@ -1,13 +1,12 @@
 package es.uvigo.esei.dagss.controladores.medico;
 
 import es.uvigo.esei.dagss.dominio.daos.CitaDAO;
-import es.uvigo.esei.dagss.dominio.daos.MedicoDAO;
-import es.uvigo.esei.dagss.dominio.daos.PacienteDAO;
+import es.uvigo.esei.dagss.dominio.daos.MedicamentoDAO;
 import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
 import es.uvigo.esei.dagss.dominio.entidades.Cita;
 import es.uvigo.esei.dagss.dominio.entidades.EstadoCita;
+import es.uvigo.esei.dagss.dominio.entidades.Medicamento;
 import es.uvigo.esei.dagss.dominio.entidades.Medico;
-import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -33,6 +32,9 @@ public class CitasControlador implements Serializable {
     
     @Inject
     PrescripcionDAO prescripcionDAO;
+    
+    @Inject
+    MedicamentoDAO medicamentoDAO;
 
 
     private List<Prescripcion> prescripciones;
@@ -40,6 +42,8 @@ public class CitasControlador implements Serializable {
     private Cita citaActual;
     private Medico medicoActual;
     private Prescripcion prescripcionActual;
+    private List<Medicamento> medicamentos;
+    private Medicamento medicamentoActual;
 
     public CitasControlador() {
     }
@@ -48,6 +52,7 @@ public class CitasControlador implements Serializable {
     public void inicializar() {
         medicoActual = medicoControlador.getMedicoActual();
         citas = citaDAO.buscarPorMedico(medicoActual.getId());
+        medicamentos = medicamentoDAO.buscarTodos();
     }
 
     /*
@@ -89,6 +94,23 @@ public class CitasControlador implements Serializable {
     public void setPrescripcionActual(Prescripcion prescripcionActual) {
         this.prescripcionActual = prescripcionActual;
     }
+    
+    
+    public Medicamento getMedicamentoActual() {
+        return medicamentoActual;
+    }
+
+    public void setMedicamentoActual(Medicamento medicamentoActual) {
+        this.medicamentoActual = medicamentoActual;
+    }    
+    
+    public List<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
 
     public String atenderCita(Cita cita) {
         this.citaActual = cita;
@@ -127,9 +149,13 @@ public class CitasControlador implements Serializable {
         prescripcionActual = prescripcion;   // Otra alternativa: volver a refrescarlos desde el DAO
     }
     
+    public void seleccionarMedicamento(Medicamento medicamento) {
+    }
+    
     public void doGuardarPrescripcionEditado() {
         // Actualiza un centro de salud
         prescripcionActual.setMedico(medicoActual);
+        prescripcionActual.setMedicamento(medicamentoActual);
         prescripcionActual = prescripcionDAO.actualizar(prescripcionActual);
         prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
     }
@@ -143,6 +169,7 @@ public class CitasControlador implements Serializable {
     
     public void doGuardarNuevoPrescripcion() {
         // Crea un nuevo centro de salud
+        prescripcionActual.setMedicamento(medicamentoActual);
         prescripcionActual = prescripcionDAO.crear(prescripcionActual);
         // Actualiza lista de centros de salud a mostrar
         prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 

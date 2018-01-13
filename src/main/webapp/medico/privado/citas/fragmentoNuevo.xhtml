@@ -12,7 +12,40 @@
                 <b:panel title="Crear prescripción" 
                          rendered="#{not empty citasControlador.prescripcionActual}" 
                          collapsible="false">
-                    
+                    <div id="medicamentos">
+                        <b:dataTable id="tablaListado"  class="tablaListadoClass"
+                                     value="#{citasControlador.medicamentos}"
+                                     var="medicamento"
+                                     page-length="4" page-length-menu="[4,8]">
+
+                            <b:dataTableColumn label="Nombre">
+                                <h:outputText value="#{medicamento.nombre}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Principio activo">
+                                <h:outputText value="#{medicamento.principioActivo}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Fabricante">
+                                <h:outputText value="#{medicamento.fabricante}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Familia">
+                                <h:outputText value="#{medicamento.familia}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="Dosis">
+                                <h:outputText value="#{medicamento.numeroDosis}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="" orderable="false">
+                                <b:commandButton id="botonVer" icon-awesome="medkit" tooltip="Ver" ajax="true"  
+                                                 actionListener="#{citasControlador.seleccionarMedicamento(medicamento)}" 
+                                                 update=":formularioVer:modalVer"
+                                                 oncomplete="$('#medicamentos').hide();$('#medic').show()" />
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </div>
+                    <div id="medic" style="display: none">
+                        <b:label id="selected" value="Medicamento seleccionado &#10004;"/>
+                        <br/>
+                    </div>
+
                     <h:outputLabel value="Dosis" for="dosis"/>
                     <b:inputText id="dosis" value="#{citasControlador.prescripcionActual.dosis}"/>
 
@@ -21,18 +54,18 @@
 
                     <h:outputLabel value="Fecha inicio" for="fechaInicio" />
                     <b:inputText id="fechaInicio" value="#{citasControlador.prescripcionActual.fechaInicio}" readonly="true">
-                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
                     </b:inputText>
 
                     <h:outputLabel value="Fecha fin" for="fechaFin"/>
                     <b:dateTimePicker id="fechaFin" value="#{citasControlador.prescripcionActual.fechaFin}" locale="es_ES" show-time="false" allow-input-toggle="true"/>
-                    
+
                 </b:panel>
                 <f:facet name="footer">
                     <b:commandButton value="Crear" 
                                      ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal" 
                                      actionListener="#{citasControlador.doGuardarNuevoPrescripcion()}"  
-                                     oncomplete="$('.modal-nuevo-class').modal('hide')"/>
+                                     oncomplete="$('.modal-nuevo-class').modal('hide'); location.reload()"/>
                     <b:button value="Cerrar" dismiss="modal"/>
                 </f:facet>
             </b:modal>

@@ -34,6 +34,13 @@ a:link:hover, a:visited:hover  {
     text-decoration : underline;
 }
 
+#selected {
+    font-size: 14px;
+    display: block;
+    max-width: 270px;
+    margin: 0 auto;
+}
+
 #formularioAtencionCliente {
     max-width: 600px;
     margin: 0 auto;
