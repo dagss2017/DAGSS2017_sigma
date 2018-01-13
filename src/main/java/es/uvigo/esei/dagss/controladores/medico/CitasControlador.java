@@ -105,11 +105,13 @@ public class CitasControlador implements Serializable {
 
     }
 
-    public void doGuardarEditado() {
-        // Actualiza un centro de salud
+    public String doFinalizarCita() {
+        citaActual.setEstado(EstadoCita.COMPLETADA);
         citaActual = citaDAO.actualizar(citaActual);
-        // Actualiza lista de centros de salud a mostrar
-        citas = citaDAO.buscarTodos();
+        // Actualiza lista de citas
+        citas = citaDAO.buscarPorMedico(medicoActual.getId());
+        //Devuelve a la página de listado
+        return "listadoCitas";
     }
 
     public String doVolver() {
