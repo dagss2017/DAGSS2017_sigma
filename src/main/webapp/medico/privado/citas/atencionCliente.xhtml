@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+        <ui:composition template="/plantillas/plantillaComun.xhtml">
+            <ui:define name="tituloPagina">
+                <h3> Formulario de atención al cliente </h3>
+            </ui:define>
+
+            <ui:define name="menu">
+                <ui:include src="/medico/plantillas/menuMedico.xhtml"/>                
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form id="formularioAtencionCliente">
+                    <b:container fluid="true">
+                        <b:panel title="Cita del paciente: #{citasControlador.citaActual.paciente.dni}" collapsible="false">
+                            
+                            <b:panelGrid columns="2">
+                                <h:outputLabel value="Nombre del Paciente"/>
+                                <h:outputText value="#{citasControlador.citaActual.paciente.apellidos}, #{citasControlador.citaActual.paciente.nombre}" />
+                                
+                                <h:outputLabel value="Fecha de la cita"/>
+                                <h:outputText value="#{citasControlador.citaActual.fecha}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                                </h:outputText>
+                                
+                                <h:outputLabel value="Hora de la cita"/>
+                                <h:outputText value="#{citasControlador.citaActual.hora}">
+                                    <f:convertDateTime pattern="HH:mm" locale="es_ES" timeZone="Europe/Madrid"/>
+                                </h:outputText>
+                                
+                            </b:panelGrid> 
+                            <br/>
+
+                            <b:commandButton id="botonPrescrip" value="Acceder a prescripciones" tooltip="Prescripciones del cliente #{citasControlador.citaActual.paciente.dni}" 
+                                              styleClass="btn btn-success" action="listadoCitas"
+                                             />
+                            <f:facet name="footer">
+                                <b:commandButton id="botonVolver" value="Volver" styleClass="btn btn-info btn-atcliente" tooltip="Volver sin realizar cambios" 
+                                                 action="listadoCitas"/>
+                                <b:commandButton id="botonAusente" value="Marcar como ausente" styleClass="btn btn-warning btn-atcliente" tooltip="El cliente no se ha presentado a la cita" 
+                                                 action="listadoCitas"/>
+                                <b:commandButton id="botonFinalizar" value="Finalizar" styleClass="btn btn-danger btn-atcliente" tooltip="Finalizar cita" 
+                                                 action="listadoCitas"/>
+                            </f:facet>
+                        </b:panel>
+                    </b:container>
+                </h:form>         
+            </ui:define>
+
+
+        </ui:composition>    
+    </body>
+</html>
+

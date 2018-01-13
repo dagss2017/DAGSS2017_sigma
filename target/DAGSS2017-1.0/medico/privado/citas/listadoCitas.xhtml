@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
-
+    
     <ui:composition template="/plantillas/plantillaComun.xhtml">
 
         <ui:define name="tituloPagina">
@@ -61,8 +61,8 @@
                             </b:dataTableColumn>
 
                             <b:dataTableColumn label="Atender cita" orderable="false">
-                                <b:commandButton id="botonVer" icon-awesome="stethoscope" tooltip="Atender" ajax="true" 
-                                                 actionListener="#{gestionCitasControlador.doVer(cita)}" 
+                                <b:commandButton id="botonVer" icon-awesome="stethoscope" tooltip="Atender" 
+                                                 action="#{citasControlador.atenderCita(cita)}"
                                                  rendered="#{citasControlador.mostrarAtenderBoton(cita)}"/>
                             </b:dataTableColumn>  
                         </b:dataTable>

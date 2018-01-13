@@ -92,8 +92,9 @@ public class CitasControlador implements Serializable {
         citaActual = cita;   // Otra alternativa: volver a refrescarlos desde el DAO
     }
 
-    public void doEditar(Cita cita) {
-        citaActual = cita;   // Otra alternativa: volver a refrescarlos desde el DAO
+    public String atenderCita(Cita cita) {
+        citaActual = cita;
+        return "atencionCliente";
     }
 
     public void doGuardarNuevo() {

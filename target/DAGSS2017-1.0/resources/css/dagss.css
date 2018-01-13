@@ -13,8 +13,13 @@ h1 {
     font-size:  16px;
     font-weight: bold;
     margin: 0px;
+    text-align: center;
     padding: 0px;
     color: #D20005;
+}
+
+h2, h3 {
+    text-align: center;
 }
 
 a:link, a:visited {
@@ -29,6 +34,10 @@ a:link:hover, a:visited:hover  {
   text-decoration : underline;
 }
 
+#formularioAtencionCliente {
+    max-width: 600px;
+    margin: 0 auto;
+}
 
 /* Margenes y Colores de plantilla global */
 #pagina{
@@ -82,6 +91,10 @@ a:link:hover, a:visited:hover  {
 .errores {
     color: red;
     font-weight: bold;
+}
+
+.btn-atcliente {
+    margin: 0px 35px 0px 40px;
 }
 
 
