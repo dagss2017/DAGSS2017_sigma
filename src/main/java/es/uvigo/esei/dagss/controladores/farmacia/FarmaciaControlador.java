@@ -10,7 +10,6 @@ import es.uvigo.esei.dagss.dominio.entidades.TipoUsuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -30,7 +29,7 @@ public class FarmaciaControlador implements Serializable {
     @Inject
     private AutenticacionControlador autenticacionControlador;
 
-    @EJB
+    @Inject
     private FarmaciaDAO farmaciaDAO;
 
     /**
@@ -62,6 +61,7 @@ public class FarmaciaControlador implements Serializable {
     public void setFarmaciaActual(Farmacia farmaciaActual) {
         this.farmaciaActual = farmaciaActual;
     }
+    
 
     private boolean parametrosAccesoInvalidos() {
         return ((nif == null) || (password == null));
@@ -88,4 +88,5 @@ public class FarmaciaControlador implements Serializable {
         }
         return destino;
     }
+
 }

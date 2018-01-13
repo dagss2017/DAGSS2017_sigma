@@ -6,6 +6,10 @@
       xmlns:b="http://bootsfaces.net/ui">
     <ui:composition>
         <b:navbarLinks>
+            <b:dropMenu value="Gestión de medicamentos">                            
+                <b:navCommandLink value="Farmacias" outcome="/administrador/privado/farmacias/listadoFarmacias.xhtml" />
+                <b:navCommandLink value="Medicamentos" outcome="/administrador/privado/medicamentos/listadoMedicamentos.xhtml" />
+            </b:dropMenu>
             <b:navCommandLink rendered="#{autenticacionControlador.usuarioAutenticado}"
                               value="Desconectar" 
                               action="#{autenticacionControlador.doLogOut()}"
@@ -14,4 +18,3 @@
         </b:navbarLinks>
     </ui:composition>
 </html>
-
