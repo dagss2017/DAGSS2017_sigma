@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+        <h:form id="formularioEditar">
+            <b:modal id="modalEditar" class="modal-editar-class" title="Editar Prescripcion">
+                <b:panel title="Editar Prescripcion ID. #{citasControlador.prescripcionActual.id}" 
+                         rendered="#{not empty citasControlador.prescripcionActual}"
+                         collapsible="false">
+                    
+                    <h:outputLabel value="Dosis" for="dosis"/>
+                    <b:inputText id="dosis" value="#{citasControlador.prescripcionActual.dosis}"/>
+
+                    <h:outputLabel value="Indicaciones" for="indicaciones"/>
+                    <b:inputText id="indicaciones" value="#{citasControlador.prescripcionActual.indicaciones}"/>
+
+                    <h:outputLabel value="Fecha inicio" for="fechaInicio"/>
+                    <b:inputText id="fechaInicio" value="#{citasControlador.prescripcionActual.fechaInicio}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                    </b:inputText>
+
+                    <h:outputLabel value="Fecha fin" for="fechaFin"/>
+                    <b:inputText id="fechaFin" value="#{citasControlador.prescripcionActual.fechaFin}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                    </b:inputText>
+
+                </b:panel>
+                <f:facet name="footer">
+                    <b:commandButton value="Guardar" 
+                                     ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal" 
+                                     actionListener="#{citasControlador.doGuardarPrescripcionEditado()}"  
+                                     oncomplete="$('.modal-editar-class').modal('hide')"/>
+                    <b:button value="Cerrar" dismiss="modal"/>
+                </f:facet>
+            </b:modal>                        
+        </h:form>
+    </ui:composition>
+</html>
+

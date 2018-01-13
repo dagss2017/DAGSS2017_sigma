@@ -125,6 +125,13 @@ public class CitasControlador implements Serializable {
     public void doVerPrescripcion(Prescripcion prescripcion) {
         prescripcionActual = prescripcion;   // Otra alternativa: volver a refrescarlos desde el DAO
     }
+    
+    public void doGuardarPrescripcionEditado() {
+        // Actualiza un centro de salud
+        prescripcionActual.setMedico(medicoActual);
+        prescripcionActual = prescripcionDAO.actualizar(prescripcionActual);
+        prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
+    }
 
     public String mostrarAtenderBoton(Cita cita) {
         if (cita.getEstado().getEtiqueta().equals("PLANIFICADA")) {

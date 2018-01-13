@@ -75,7 +75,7 @@
                                                  update=":formularioVer:modalVer"
                                                  oncomplete="$('.modal-ver-class').modal('show')" />
                                 <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar" ajax="true" 
-                                                 actionListener="#{gestionMedicamentosControlador.doEditar(medicamento)}" 
+                                                 actionListener="#{citasControlador.doVerPrescripcion(prescripcion)}" 
                                                  update=":formularioEditar:modalEditar"
                                                  oncomplete="$('.modal-editar-class').modal('show')"/>
                                 <b:commandButton id="botonBorrar" icon-awesome="trash" tooltip="Eliminar" ajax="true" 
@@ -88,6 +88,8 @@
                                              actionListener="#{gestionMedicamentosControlador.doNuevo()}" 
                                              update=":formularioNuevo:modalNuevo"
                                              oncomplete="$('.modal-nuevo-class').modal('show')"/>-->
+                            <b:commandButton id="botonVolver" value="Volver" styleClass="btn btn-info btn-atcliente" tooltip="Volver sin realizar cambios" 
+                                                 action="atencionCliente"/>
                         </f:facet>
                     </b:panel>
 
