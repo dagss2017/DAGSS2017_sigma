@@ -84,10 +84,10 @@
                             </b:dataTableColumn> 
                         </b:dataTable>
                         <f:facet name="footer">
-                            <!--<b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Medicamento" tooltip="Nuevo medicamento" ajax="true"
-                                             actionListener="#{gestionMedicamentosControlador.doNuevo()}" 
+                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear prescripción" tooltip="Nuevo prescripción" ajax="true"
+                                             actionListener="#{citasControlador.doNuevo()}" 
                                              update=":formularioNuevo:modalNuevo"
-                                             oncomplete="$('.modal-nuevo-class').modal('show')"/>-->
+                                             oncomplete="$('.modal-nuevo-class').modal('show')"/>
                             <b:commandButton id="botonVolver" value="Volver" styleClass="btn btn-info btn-atcliente" tooltip="Volver sin realizar cambios" 
                                                  action="atencionCliente"/>
                         </f:facet>

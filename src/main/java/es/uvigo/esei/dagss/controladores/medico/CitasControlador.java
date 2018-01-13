@@ -12,6 +12,7 @@ import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -117,7 +118,7 @@ public class CitasControlador implements Serializable {
         return "../index?faces-redirect=true";
     }
     
-     public void doEliminarPrescripcion(Prescripcion prescripcion) {
+    public void doEliminarPrescripcion(Prescripcion prescripcion) {
         prescripcionDAO.eliminar(prescripcion);
         prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
     }
@@ -130,6 +131,20 @@ public class CitasControlador implements Serializable {
         // Actualiza un centro de salud
         prescripcionActual.setMedico(medicoActual);
         prescripcionActual = prescripcionDAO.actualizar(prescripcionActual);
+        prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
+    }
+    
+    public void doNuevo() {
+        prescripcionActual = new Prescripcion(); // Farmacia vacia
+        prescripcionActual.setFechaInicio(Calendar.getInstance().getTime());
+        prescripcionActual.setMedico(medicoActual);
+        prescripcionActual.setPaciente(citaActual.getPaciente());
+    }
+    
+    public void doGuardarNuevoPrescripcion() {
+        // Crea un nuevo centro de salud
+        prescripcionActual = prescripcionDAO.crear(prescripcionActual);
+        // Actualiza lista de centros de salud a mostrar
         prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
     }
 

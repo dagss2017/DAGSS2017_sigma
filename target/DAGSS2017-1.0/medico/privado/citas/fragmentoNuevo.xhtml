@@ -8,29 +8,30 @@
 
     <ui:composition>
         <h:form id="formularioNuevo">
-            <b:modal id="modalNuevo" class="modal-nuevo-class" title="Crear Medicamento">
-                <b:panel title="Crear Medicamento" 
-                         rendered="#{not empty gestionMedicamentosControlador.medicamentoActual}" 
+            <b:modal id="modalNuevo" class="modal-nuevo-class" title="Crear prescripción para el paciente: #{citasControlador.citaActual.paciente.apellidos}, #{citasControlador.citaActual.paciente.nombre}">
+                <b:panel title="Crear prescripción" 
+                         rendered="#{not empty citasControlador.prescripcionActual}" 
                          collapsible="false">
-                    <h:outputLabel value="Nombre" for="nombre"/>
-                    <b:inputText id="nombre" value="#{gestionMedicamentosControlador.medicamentoActual.nombre}"/>
+                    
+                    <h:outputLabel value="Dosis" for="dosis"/>
+                    <b:inputText id="dosis" value="#{citasControlador.prescripcionActual.dosis}"/>
 
-                    <h:outputLabel value="Familia" for="familia"/>
-                    <b:inputText id="familia" value="#{gestionMedicamentosControlador.medicamentoActual.familia}"/>
+                    <h:outputLabel value="Indicaciones" for="indicaciones"/>
+                    <b:inputText id="indicaciones" value="#{citasControlador.prescripcionActual.indicaciones}"/>
 
-                    <h:outputLabel value="Fabricante" for="fabricante"/>
-                    <b:inputText id="fabricante" value="#{gestionMedicamentosControlador.medicamentoActual.fabricante}"/>
+                    <h:outputLabel value="Fecha inicio" for="fechaInicio" />
+                    <b:inputText id="fechaInicio" value="#{citasControlador.prescripcionActual.fechaInicio}" readonly="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                    </b:inputText>
 
-                    <h:outputLabel value="Principio activo" for="principioactivo"/>
-                    <b:inputText id="principioactivo" value="#{gestionMedicamentosControlador.medicamentoActual.principioActivo}"/>
-
-                    <h:outputLabel value="Num. dosis por envase" for="numdosis"/>
-                    <b:inputText id="numdosis" value="#{gestionMedicamentosControlador.medicamentoActual.numeroDosis}"/>
+                    <h:outputLabel value="Fecha fin" for="fechaFin"/>
+                    <b:dateTimePicker id="fechaFin" value="#{citasControlador.prescripcionActual.fechaFin}" locale="es_ES" show-time="false" allow-input-toggle="true"/>
+                    
                 </b:panel>
                 <f:facet name="footer">
                     <b:commandButton value="Crear" 
                                      ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal" 
-                                     actionListener="#{gestionMedicamentosControlador.doGuardarNuevo()}"  
+                                     actionListener="#{citasControlador.doGuardarNuevoPrescripcion()}"  
                                      oncomplete="$('.modal-nuevo-class').modal('hide')"/>
                     <b:button value="Cerrar" dismiss="modal"/>
                 </f:facet>

@@ -19,14 +19,11 @@
                     <b:inputText id="indicaciones" value="#{citasControlador.prescripcionActual.indicaciones}"/>
 
                     <h:outputLabel value="Fecha inicio" for="fechaInicio"/>
-                    <b:inputText id="fechaInicio" value="#{citasControlador.prescripcionActual.fechaInicio}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
-                    </b:inputText>
-
+                    <b:dateTimePicker id="fechaInicio" value="#{citasControlador.prescripcionActual.fechaInicio}" locale="es_ES" show-time="false" allow-input-toggle="true"/>
+                    
+                    <br/>
                     <h:outputLabel value="Fecha fin" for="fechaFin"/>
-                    <b:inputText id="fechaFin" value="#{citasControlador.prescripcionActual.fechaFin}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
-                    </b:inputText>
+                    <b:dateTimePicker id="fechaFin" value="#{citasControlador.prescripcionActual.fechaFin}" locale="es_ES" show-time="false" allow-input-toggle="true"/>
 
                 </b:panel>
                 <f:facet name="footer">

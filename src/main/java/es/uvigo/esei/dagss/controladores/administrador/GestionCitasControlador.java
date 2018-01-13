@@ -100,7 +100,6 @@ public class GestionCitasControlador implements Serializable {
         citaActual = citaDAO.crear(citaActual);
         // Actualiza lista de centros de salud a mostrar
         citas = citaDAO.buscarTodos();
-
     }
 
     public void doGuardarEditado() {
