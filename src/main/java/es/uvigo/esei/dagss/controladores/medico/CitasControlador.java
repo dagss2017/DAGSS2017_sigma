@@ -150,6 +150,7 @@ public class CitasControlador implements Serializable {
     }
     
     public void seleccionarMedicamento(Medicamento medicamento) {
+        medicamentoActual = medicamento;  
     }
     
     public void doGuardarPrescripcionEditado() {
