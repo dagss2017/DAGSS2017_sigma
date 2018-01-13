@@ -38,6 +38,7 @@ public class CitasControlador implements Serializable {
     private List<Cita> citas;
     private Cita citaActual;
     private Medico medicoActual;
+    private Prescripcion prescripcionActual;
 
     public CitasControlador() {
     }
@@ -78,6 +79,15 @@ public class CitasControlador implements Serializable {
     public void setPrescripciones(List<Prescripcion> prescripciones) {
         this.prescripciones = prescripciones;
     }
+    
+    
+    public Prescripcion getPrescripcionActual() {
+        return prescripcionActual;
+    }
+
+    public void setPrescripcionActual(Prescripcion prescripcionActual) {
+        this.prescripcionActual = prescripcionActual;
+    }
 
     public String atenderCita(Cita cita) {
         this.citaActual = cita;
@@ -110,6 +120,10 @@ public class CitasControlador implements Serializable {
      public void doEliminarPrescripcion(Prescripcion prescripcion) {
         prescripcionDAO.eliminar(prescripcion);
         prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
+    }
+     
+    public void doVerPrescripcion(Prescripcion prescripcion) {
+        prescripcionActual = prescripcion;   // Otra alternativa: volver a refrescarlos desde el DAO
     }
 
     public String mostrarAtenderBoton(Cita cita) {

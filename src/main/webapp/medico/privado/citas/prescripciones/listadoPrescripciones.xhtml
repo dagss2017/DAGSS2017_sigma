@@ -71,7 +71,7 @@
 
                             <b:dataTableColumn label="" orderable="false">
                                 <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"  
-                                                 actionListener="#{gestionMedicamentosControlador.doVer(medicamento)}" 
+                                                 actionListener="#{citasControlador.doVerPrescripcion(prescripcion)}" 
                                                  update=":formularioVer:modalVer"
                                                  oncomplete="$('.modal-ver-class').modal('show')" />
                                 <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar" ajax="true" 

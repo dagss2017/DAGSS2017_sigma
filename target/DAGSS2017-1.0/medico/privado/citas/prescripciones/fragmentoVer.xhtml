@@ -8,25 +8,54 @@
 
     <ui:composition>
         <h:form id="formularioVer">
-            <b:modal id="modalVer" class="modal-ver-class" title="Detalle Medicamento">
-                <b:panel title="Detalle Medicamento  ID. #{gestionMedicamentosControlador.medicamentoActual.id}" 
-                         rendered="#{not empty gestionMedicamentosControlador.medicamentoActual}" 
+            <b:modal id="modalVer" class="modal-ver-class" title="Detalle Prescripcion">
+                <b:panel title="Detalle Prescripcion  ID. #{citasControlador.prescripcionActual.id}" 
+                         rendered="#{not empty citasControlador.prescripcionActual}" 
                          collapsible="false">
-                    <b:panelGrid columns="2">  
-                        <h:outputLabel value="Nombre" for="nombre"/>
-                        <h:outputText id="nombre" value="#{gestionMedicamentosControlador.medicamentoActual.nombre}"/>
+                    <b:panelGrid columns="2"> 
+                        <h:outputLabel value="Medicamento:"/>
 
-                        <h:outputLabel value="Familia" for="familia"/>
-                        <h:outputText id="familia" value="#{gestionMedicamentosControlador.medicamentoActual.familia}"/>
+                        <b:panelGrid columns="2">
 
-                        <h:outputLabel value="Fabricante" for="fabricante"/>
-                        <h:outputText id="fabricante" value="#{gestionMedicamentosControlador.medicamentoActual.fabricante}"/>
+                            <h:outputLabel value="Nombre: "/>
+                            <h:outputText value="#{citasControlador.prescripcionActual.medicamento.nombre}" />                   
 
-                        <h:outputLabel value="Principio activo" for="principioactivo"/>
-                        <h:outputText id="principioactivo" value="#{gestionMedicamentosControlador.medicamentoActual.principioActivo}"/>
+                            <h:outputLabel value="Familia: "/>
+                            <h:outputText value="#{citasControlador.prescripcionActual.medicamento.familia}" />
 
-                        <h:outputLabel value="Num. dosis por envase" for="numdosis"/>
-                        <h:outputText id="numdosis" value="#{gestionMedicamentosControlador.medicamentoActual.numeroDosis}"/>
+
+                            <h:outputLabel value="Fabricante: "/>
+                            <h:outputText value="#{citasControlador.prescripcionActual.medicamento.fabricante}" />
+
+
+                            <h:outputLabel value="Principio activo: "/>
+                            <h:outputText value="#{citasControlador.prescripcionActual.medicamento.principioActivo}" />
+
+
+                            <h:outputLabel value="Num. dosis envase: "/>
+                            <h:outputText value="#{citasControlador.prescripcionActual.medicamento.numeroDosis}" />
+
+                        </b:panelGrid>
+
+                        <h:outputLabel value="Dosis: "/>
+                        <h:outputText value="#{citasControlador.prescripcionActual.dosis}" />
+
+                        <h:outputLabel value="Fecha inicio: "/>
+                        <h:outputText value="#{citasControlador.prescripcionActual.fechaInicio}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                        </h:outputText>
+
+                        <h:outputLabel value="Fecha fin: "/>
+                        <h:outputText value="#{citasControlador.prescripcionActual.fechaFin}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                        </h:outputText>
+
+                        <h:outputLabel value="Indicaciones: "/>
+                        <h:outputText value="#{citasControlador.prescripcionActual.indicaciones}" />
+                        
+                        <h:outputLabel value="Médico: "/>
+                        <h:outputText value="#{citasControlador.prescripcionActual.medico.apellidos}, #{citasControlador.prescripcionActual.medico.nombre}" />
+
                     </b:panelGrid>
                 </b:panel>
                 <f:facet name="footer">
