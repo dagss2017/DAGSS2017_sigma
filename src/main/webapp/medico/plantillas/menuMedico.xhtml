@@ -5,7 +5,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui">
     <ui:composition>
-        <b:navbarLinks>                 
+        <b:navbarLinks>     
+            <b:navCommandLink value="Inicio" outcome="/medico/privado/index" icon="ui-icon-home"/>
             <b:navCommandLink value="Agenda" outcome="/medico/privado/citas/listadoCitas.xhtml" />
             <b:navCommandLink rendered="#{autenticacionControlador.usuarioAutenticado}"
                               value="Desconectar" 
