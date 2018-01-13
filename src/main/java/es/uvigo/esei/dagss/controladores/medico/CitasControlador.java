@@ -28,12 +28,6 @@ public class CitasControlador implements Serializable {
     @Inject
     CitaDAO citaDAO;
 
-    @Inject
-    MedicoDAO medicoDAO;
-
-    @Inject
-    PacienteDAO pacienteDAO;
-
     private List<Cita> citas;
     private Cita citaActual;
     private Medico medicoActual;
@@ -68,28 +62,6 @@ public class CitasControlador implements Serializable {
 
     public void setCitaActual(Cita citaActual) {
         this.citaActual = citaActual;
-    }
-
-    public List<Paciente> getListadoPacientes() {
-        return pacienteDAO.buscarTodos();
-    }
-
-    public List<Medico> getListadoMedicos() {
-        return medicoDAO.buscarTodos();
-    }
-
-    public void doEliminar(Cita cita) {
-        System.out.println(">>> llama a elimina con " + cita);
-        citaDAO.eliminar(cita);
-        citas = citaDAO.buscarTodos(); // Actualizar lista de centros
-    }
-
-    public void doNuevo() {
-
-    }
-
-    public void doVer(Cita cita) {
-        citaActual = cita;   // Otra alternativa: volver a refrescarlos desde el DAO
     }
 
     public String atenderCita(Cita cita) {
