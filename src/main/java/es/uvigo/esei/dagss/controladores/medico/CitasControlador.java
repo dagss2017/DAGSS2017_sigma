@@ -3,10 +3,12 @@ package es.uvigo.esei.dagss.controladores.medico;
 import es.uvigo.esei.dagss.dominio.daos.CitaDAO;
 import es.uvigo.esei.dagss.dominio.daos.MedicoDAO;
 import es.uvigo.esei.dagss.dominio.daos.PacienteDAO;
+import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
 import es.uvigo.esei.dagss.dominio.entidades.Cita;
 import es.uvigo.esei.dagss.dominio.entidades.EstadoCita;
 import es.uvigo.esei.dagss.dominio.entidades.Medico;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
+import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -27,7 +29,12 @@ public class CitasControlador implements Serializable {
 
     @Inject
     CitaDAO citaDAO;
+    
+    @Inject
+    PrescripcionDAO prescripcionDAO;
 
+
+    private List<Prescripcion> prescripciones;
     private List<Cita> citas;
     private Cita citaActual;
     private Medico medicoActual;
@@ -63,15 +70,24 @@ public class CitasControlador implements Serializable {
     public void setCitaActual(Cita citaActual) {
         this.citaActual = citaActual;
     }
+    
+     public List<Prescripcion> getPrescripciones() {
+        return prescripciones;
+    }
+
+    public void setPrescripciones(List<Prescripcion> prescripciones) {
+        this.prescripciones = prescripciones;
+    }
 
     public String atenderCita(Cita cita) {
-        citaActual = cita;
+        this.citaActual = cita;
+        prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());
         return "atencionCliente";
     }
 
     public String doCitaAusente() {
-        citaActual.setEstado(EstadoCita.AUSENTE);
-        citaActual = citaDAO.actualizar(citaActual);
+        this.citaActual.setEstado(EstadoCita.AUSENTE);
+        this.citaActual = citaDAO.actualizar(citaActual);
         // Actualiza lista de citas
         citas = citaDAO.buscarPorMedico(medicoActual.getId());
         //Devuelve a la página de listado
@@ -79,8 +95,8 @@ public class CitasControlador implements Serializable {
     }
 
     public String doFinalizarCita() {
-        citaActual.setEstado(EstadoCita.COMPLETADA);
-        citaActual = citaDAO.actualizar(citaActual);
+        this.citaActual.setEstado(EstadoCita.COMPLETADA);
+        this.citaActual = citaDAO.actualizar(citaActual);
         // Actualiza lista de citas
         citas = citaDAO.buscarPorMedico(medicoActual.getId());
         //Devuelve a la página de listado
@@ -89,6 +105,11 @@ public class CitasControlador implements Serializable {
 
     public String doVolver() {
         return "../index?faces-redirect=true";
+    }
+    
+     public void doEliminarPrescripcion(Prescripcion prescripcion) {
+        prescripcionDAO.eliminar(prescripcion);
+        prescripciones = prescripcionDAO.buscarPorPaciente(citaActual.getPaciente().getId());// Actualizar lista 
     }
 
     public String mostrarAtenderBoton(Cita cita) {

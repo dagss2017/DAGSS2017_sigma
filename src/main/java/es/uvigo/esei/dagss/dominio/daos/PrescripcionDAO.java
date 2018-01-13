@@ -26,6 +26,7 @@ public class PrescripcionDAO extends GenericoDAO<Prescripcion> {
     public List<Prescripcion> buscarPorPaciente(long id) {
         Date fechaActual = Calendar.getInstance().getTime();
         TypedQuery<Prescripcion> q = em.createQuery("SELECT p FROM Prescripcion AS p "
+                + "  WHERE (p.paciente.id = :id) AND (p.fechaFin >= :fechaActual)", Prescripcion.class);
         q.setParameter("id",id);
         q.setParameter("fechaActual", fechaActual);
         return q.getResultList();

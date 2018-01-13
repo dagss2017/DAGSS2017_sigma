@@ -23,15 +23,15 @@ h2, h3 {
 }
 
 a:link, a:visited {
-  color: #045491;
-  font-weight : bold;
-  text-decoration: none;
+    color: #045491;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
-  color: #045491;
-  font-weight : bold;
-  text-decoration : underline;
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
 }
 
 #formularioAtencionCliente {
@@ -83,7 +83,7 @@ a:link:hover, a:visited:hover  {
 
     background-color: #c2dfef;
     text-align: center;
-    
+
     padding: 2px;
     margin: 5px 0px 0px 0px;    
 }
@@ -99,21 +99,21 @@ a:link:hover, a:visited:hover  {
 
 
 .tablaBase {
-	border-width: 1px;
-	border-spacing: 0px;
-	border-style: solid;
-	border-color: black;
-	border-collapse: collapse;
+    border-width: 1px;
+    border-spacing: 0px;
+    border-style: solid;
+    border-color: black;
+    border-collapse: collapse;
 }
 .tablaBase th {
-	border-width: 1px;
-	padding: 1px;
-	border-style: solid;
-	border-color: black;
+    border-width: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-color: black;
 }
 .tablaBase td {
-	border-width: 1px;
-	padding: 1px;
-	border-style: solid;
-	border-color: black;
+    border-width: 1px;
+    padding: 1px;
+    border-style: solid;
+    border-color: black;
 }

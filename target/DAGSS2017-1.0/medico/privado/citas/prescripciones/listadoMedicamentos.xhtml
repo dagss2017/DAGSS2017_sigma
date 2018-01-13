@@ -13,7 +13,7 @@
         </ui:define>
 
         <ui:define name="menu">
-            <ui:include src="/administrador/plantillas/menuAdministrador.xhtml"/>                
+            <ui:include src="/medico/plantillas/menuMedico.xhtml"/>                
         </ui:define>
 
         <ui:define name="contenido">
@@ -21,7 +21,7 @@
                 <b:container fluid="true">
                     <b:panel title="Listado de Prescripciones" collapsible="false">
                         <b:dataTable id="tablaListado"  class="tablaListadoClass"
-                                     value="#{prescripcionControlador.prescripciones}"
+                                     value="#{citasControlador.prescripciones}"
                                      var="prescripcion" 
                                      page-length="5" page-length-menu="[5,10,20]">
 
@@ -69,7 +69,7 @@
                                 </h:outputText>
                             </b:dataTableColumn>
 
-                            <!--<b:dataTableColumn label="" orderable="false">
+                            <b:dataTableColumn label="" orderable="false">
                                 <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"  
                                                  actionListener="#{gestionMedicamentosControlador.doVer(medicamento)}" 
                                                  update=":formularioVer:modalVer"
@@ -79,9 +79,9 @@
                                                  update=":formularioEditar:modalEditar"
                                                  oncomplete="$('.modal-editar-class').modal('show')"/>
                                 <b:commandButton id="botonBorrar" icon-awesome="trash" tooltip="Eliminar" ajax="true" 
-                                                 actionListener="#{gestionMedicamentosControlador.doEliminar(medicamento)}"
+                                                 actionListener="#{citasControlador.doEliminarPrescripcion(prescripcion)}"
                                                  update="@(.tablaListadoClass)"/>
-                            </b:dataTableColumn>  -->
+                            </b:dataTableColumn> 
                         </b:dataTable>
                         <f:facet name="footer">
                             <!--<b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Medicamento" tooltip="Nuevo medicamento" ajax="true"
