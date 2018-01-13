@@ -45,7 +45,7 @@
                                 <b:commandButton id="botonVolver" value="Volver" styleClass="btn btn-info btn-atcliente" tooltip="Volver sin realizar cambios" 
                                                  action="listadoCitas"/>
                                 <b:commandButton id="botonAusente" value="Marcar como ausente" styleClass="btn btn-warning btn-atcliente" tooltip="El cliente no se ha presentado a la cita" 
-                                                 action="listadoCitas"/>
+                                                 action="#{citasControlador.doCitaAusente()}"/>
                                 <b:commandButton id="botonFinalizar" value="Finalizar" styleClass="btn btn-danger btn-atcliente" tooltip="Finalizar cita" 
                                                  action="#{citasControlador.doFinalizarCita()}"/>
                             </f:facet>
