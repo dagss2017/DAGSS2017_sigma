@@ -32,6 +32,7 @@ C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\controladores\
 C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\dominio\entidades\Cita.java
 C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\controladores\administrador\GestionAdministradoresControlador.java
 C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\controladores\administrador\GestionMedicosControlador.java
+C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\controladores\medico\CitasControlador.java
 C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\controladores\paciente\PacienteControlador.java
 C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\controladores\medico\MedicoControlador.java
 C:\xampp\htdocs\DAGSS2017_sigma\src\main\java\es\uvigo\esei\dagss\dominio\daos\CentroSaludDAO.java
