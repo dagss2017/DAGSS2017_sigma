@@ -21,10 +21,10 @@ import javax.inject.Inject;
 @Named(value = "citasControlador")
 @SessionScoped
 public class CitasControlador implements Serializable {
-    
+
     @Inject
     MedicoControlador medicoControlador;
-    
+
     @Inject
     CitaDAO citaDAO;
 
@@ -47,13 +47,13 @@ public class CitasControlador implements Serializable {
         citas = citaDAO.buscarPorMedico(medicoActual.getId());
     }
 
-        /*
+    /*
        Usado en la lista desplegable con los estados de una cita
      */
     public EstadoCita[] getEstadosCitas() {
         return EstadoCita.values();
     }
-    
+
     public List<Cita> getCitas() {
         return citas;
     }
@@ -79,13 +79,13 @@ public class CitasControlador implements Serializable {
     }
 
     public void doEliminar(Cita cita) {
-        System.out.println(">>> llama a elimina con "+cita);
+        System.out.println(">>> llama a elimina con " + cita);
         citaDAO.eliminar(cita);
         citas = citaDAO.buscarTodos(); // Actualizar lista de centros
     }
 
     public void doNuevo() {
-        
+
     }
 
     public void doVer(Cita cita) {
@@ -113,6 +113,14 @@ public class CitasControlador implements Serializable {
 
     public String doVolver() {
         return "../index?faces-redirect=true";
+    }
+
+    public String mostrarAtenderBoton(Cita cita) {
+        if (cita.getEstado().getEtiqueta().equals("PLANIFICADA")) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
 }
