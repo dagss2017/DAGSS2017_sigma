@@ -190,9 +190,8 @@ public class CitasControlador implements Serializable {
     }
 
     private void crearPlanRecetas(Prescripcion prescripcion) {
-        
-        double d = (prescripcion.getDosis() / prescripcion.getMedicamento().getNumeroDosis()) + 1;
-        int cajas = (int)d;
+       
+        int cajas = (prescripcion.getDosis() / prescripcion.getMedicamento().getNumeroDosis()) + 1;
 
         Date fechaInicial = Calendar.getInstance().getTime();
         Date fechaFinal = sumarRestarDiasFecha(fechaInicial, 7);
