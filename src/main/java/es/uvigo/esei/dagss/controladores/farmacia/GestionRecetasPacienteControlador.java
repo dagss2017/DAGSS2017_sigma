@@ -6,15 +6,12 @@
 package es.uvigo.esei.dagss.controladores.farmacia;
 
 import es.uvigo.esei.dagss.dominio.daos.PacienteDAO;
-import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
 import es.uvigo.esei.dagss.dominio.daos.RecetaDAO;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
 import es.uvigo.esei.dagss.dominio.entidades.Receta;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -32,7 +29,6 @@ public class GestionRecetasPacienteControlador implements Serializable {
     private String numTarjeta;
     private Paciente pacienteActual;
     private List<Receta> recetas;
-    private List<Prescripcion> prescripciones;
 
     @Inject
     private PacienteDAO pacienteDAO;
@@ -87,5 +83,9 @@ public class GestionRecetasPacienteControlador implements Serializable {
             }
         }
         return destino;
+    }
+    
+        public String doVolver() {
+        return "../login?faces-redirect=true";
     }
 }

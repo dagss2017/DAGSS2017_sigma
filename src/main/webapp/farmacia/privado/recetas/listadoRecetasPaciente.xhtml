@@ -36,10 +36,14 @@
                                     <h:outputText value="#{receta.prescripcion.medico.nombre}" />
 
                                     <h:outputLabel value="Fecha inicio validez:" />
-                                    <h:outputText value="#{receta.inicioValidez}" />
+                                    <h:outputText value="#{receta.inicioValidez}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                                    </h:outputText>
                                     
                                     <h:outputLabel value="Fecha fin validez:" />
-                                    <h:outputText value="#{receta.finValidez}" />
+                                    <h:outputText value="#{receta.finValidez}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                                    </h:outputText>
                                 </b:panelGrid>
                             </b:dataTableColumn>
 
@@ -72,10 +76,8 @@
                             </b:dataTableColumn>-->
                         </b:dataTable>
                         <f:facet name="footer">
-                            <!--<b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Paciente" tooltip="Nuevo paciente" ajax="true"
-                                             actionListener="#{gestionPacientesControlador.doNuevo()}" 
-                                             update=":formularioNuevo:modalNuevo"
-                                             oncomplete="$('.modal-nuevo-class').modal('show')"/>-->
+                            <b:commandButton id="botonVolver" class="btn btn-info" value="Volver" tooltip="Regresar a búsqueda"
+                                             actionListener="#{gestionRecetasPacienteControlador.doVolver()}"/>
                         </f:facet>                        
                     </b:panel>
 
