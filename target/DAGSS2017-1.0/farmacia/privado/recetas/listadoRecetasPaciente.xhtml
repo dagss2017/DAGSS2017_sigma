@@ -49,7 +49,7 @@
 
                             <b:dataTableColumn label="Situación" orderable="false">  
                                 <b:panelGrid columns="2" >
-                                    <h:outputLabel value="Estado de la receta:"/>
+                                    <h:outputLabel value="Disponibilidad:"/>
                                     <h:outputText value="" />
                                 </b:panelGrid>
                             </b:dataTableColumn>
@@ -61,19 +61,11 @@
                                 </b:panelGrid>
                             </b:dataTableColumn>
 
-                            <!--<b:dataTableColumn label="" orderable="false">
-                                <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"  
-                                                 actionListener="#{gestionPacientesControlador.doVer(paciente)}" 
-                                                 update=":formularioVer:modalVer"
-                                                 oncomplete="$('.modal-ver-class').modal('show')" />
-                                <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar" ajax="true" 
-                                                 actionListener="#{gestionPacientesControlador.doEditar(paciente)}" 
-                                                 update=":formularioEditar:modalEditar"
-                                                 oncomplete="$('.modal-editar-class').modal('show')"/>
-                                <b:commandButton id="botonBorrar" icon-awesome="trash" tooltip="Eliminar" ajax="true" 
-                                                 actionListener="#{gestionPacientesControlador.doEliminar(paciente)}"
-                                                 update="@(.tablaListadoClass)"/>
-                            </b:dataTableColumn>-->
+                            <b:dataTableColumn label="" orderable="false">
+                                <b:commandButton id="botonVer" value=" Subministrar" icon-awesome="medkit" class="btn btn-success" tooltip="Subministrar Medicamento" 
+                                                 action="#{gestionRecetasPacienteControlador.subministrar(receta)}"
+                                                 rendered="#{gestionRecetasPacienteControlador.mostrarSubministrarBoton(receta)}"/>
+                            </b:dataTableColumn>
                         </b:dataTable>
                         <f:facet name="footer">
                             <b:commandButton id="botonVolver" class="btn btn-info" value="Volver" tooltip="Regresar a búsqueda"

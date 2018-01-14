@@ -7,6 +7,7 @@ package es.uvigo.esei.dagss.controladores.farmacia;
 
 import es.uvigo.esei.dagss.dominio.daos.PacienteDAO;
 import es.uvigo.esei.dagss.dominio.daos.RecetaDAO;
+import es.uvigo.esei.dagss.dominio.entidades.EstadoReceta;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
 import es.uvigo.esei.dagss.dominio.entidades.Receta;
@@ -29,10 +30,11 @@ public class GestionRecetasPacienteControlador implements Serializable {
     private String numTarjeta;
     private Paciente pacienteActual;
     private List<Receta> recetas;
+    private Receta recetaActual;
 
     @Inject
     private PacienteDAO pacienteDAO;
-    
+
     @Inject
     private RecetaDAO recetaDAO;
 
@@ -54,7 +56,7 @@ public class GestionRecetasPacienteControlador implements Serializable {
     public void setNumTarjeta(String nss) {
         this.numTarjeta = nss;
     }
-    
+
     public List<Receta> getRecetas() {
         return recetas;
     }
@@ -84,8 +86,24 @@ public class GestionRecetasPacienteControlador implements Serializable {
         }
         return destino;
     }
-    
-        public String doVolver() {
+
+    public String doVolver() {
         return "../login?faces-redirect=true";
+    }
+    
+    public String subministrar(Receta receta) {
+        receta.setEstadoReceta(EstadoReceta.SERVIDA);
+        this.recetaActual = receta;
+        recetaDAO.actualizar(receta);
+        recetas = recetaDAO.buscarRecetasCliente(pacienteActual.getId());
+        return "listadoRecetasPaciente";
+    }
+    
+    public String mostrarSubministrarBoton(Receta receta) {
+        if (receta.getEstado().getEtiqueta().equals("GENERADA")) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 }
